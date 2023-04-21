@@ -4,7 +4,7 @@ function Demo2() {
     const [token, { setItem, removeItem }] = useLocalStorage('token');
 
     return (
-        <div>
+        <div className='task2'>
             <h1>Задание #2</h1>
             <p>
                 Твой токен: {token}
