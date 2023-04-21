@@ -7,11 +7,17 @@ interface Post {
     body: string
 }
 
+const URL_OPT = {
+    _limit: 3
+}
+console.log(JSON.stringify(URL_OPT))
 const URL_POSTS: string = 'https://jsonplaceholder.typicode.com/posts';
-// const URL_POSTS: string = 'https://jsonplaceholder.typicode.com/posts?_limit=3';
 
 function Demo() {
-    const request = useFetch<Post[]>(URL_POSTS);
+    console.log('========= Demo ==========')
+
+    const request = useFetch<Post[]>(URL_POSTS, URL_OPT);
+    console.log(request)
 
     return (
         <div>

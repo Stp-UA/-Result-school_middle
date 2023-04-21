@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 
 interface State<T> {
     data: T | undefined,
@@ -7,7 +7,7 @@ interface State<T> {
 }
 
 interface RequestInitParams extends RequestInit {
-    _limit: number
+    _limit?: number
 }
 
 interface RequestParams {
@@ -23,7 +23,9 @@ type Action<T> =
   { type: 'fetched'; payload: T } |
   { type: 'error'; payload: Error }
 
-export function useFetch<T>(url: string, options?: RequestInitParams): Answer<T> {
+export function useFetch<T>(url: string, props: RequestInitParams = {}): Answer<T> {
+    const [options, setOptions] = useState(props)
+
     const cancelRequest = useRef<boolean>(false)
 
     const initState: State<T> = {
@@ -46,19 +48,21 @@ export function useFetch<T>(url: string, options?: RequestInitParams): Answer<T>
     }
 
     const refetch = (prop: RequestParams): void => {
-        options = prop.params
-        console.log(options)
+        setOptions(prop.params)
     }
 
     const [state, dispatch] = useReducer(fetchReducer, initState)
 
     useEffect(() => {
+        console.log('####### useEffect ########')
         cancelRequest.current = false
 
         const fetchData = async () => {
             dispatch({ type: 'loading' })
 
             try {
+                console.log('------- fetch ------------')
+                console.log(options)
                 const response = await fetch(url, options)
                 if (!response.ok) {
                     throw new Error(response.statusText)
@@ -81,7 +85,7 @@ export function useFetch<T>(url: string, options?: RequestInitParams): Answer<T>
         return () => {
             cancelRequest.current = true
         }
-    }, [options, url])
+    }, [url, options])
 
     return { ...state, refetch }
 }
