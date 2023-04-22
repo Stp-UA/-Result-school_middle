@@ -6,23 +6,16 @@ interface IOut<T> {
 }
 
 function useEventListener<
-  KW extends keyof WindowEventMap,
-  KH extends keyof HTMLElementEventMap,
-  KM extends keyof MediaQueryListEventMap,
-  T extends HTMLElement | MediaQueryList | void = void,
+  K extends keyof HTMLElementEventMap,
+  T extends HTMLElement | void = void,
 >(
-  eventName: KW | KH | KM,
+  eventName: K,
   handler: (
-    event:
-      | WindowEventMap[KW]
-      | HTMLElementEventMap[KH]
-      | MediaQueryListEventMap[KM]
-      | Event,
+    event: HTMLElementEventMap[K] | Event,
   ) => void,
 
   element: RefObject<T>,
 ) {
-  // Create a ref that stores handler
   const savedHandler = useRef(handler)
 
   useLayoutEffect(() => {
@@ -30,17 +23,10 @@ function useEventListener<
   }, [handler])
 
   useEffect(() => {
-    // Define the listening target
     const targetElement = element.current
-
     if (!(targetElement && targetElement.addEventListener)) return
-
-    // Create event listener that calls handler function stored in ref
     const listener: typeof handler = event => savedHandler.current(event)
-
     targetElement.addEventListener(eventName, listener)
-
-    // Remove event listener on cleanup
     return () => {
       targetElement.removeEventListener(eventName, listener)
     }
