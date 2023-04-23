@@ -86,7 +86,7 @@ export function useFetch<T>(url: string, props: AxiosRequestConfig = {}): Answer
         return () => {
             cancelRequest.current = true
         }
-    }, [options, url])
+    }, [options])
 
     return { ...state, refetch }
 }
