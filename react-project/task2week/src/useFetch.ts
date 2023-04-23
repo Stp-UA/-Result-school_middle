@@ -1,4 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from 'react'
+import axios from 'axios'
+import { AxiosRequestConfig } from 'axios'
 
 interface State<T> {
     data: T | undefined,
@@ -6,16 +8,8 @@ interface State<T> {
     error: Error | undefined
 }
 
-interface RequestInitParams extends RequestInit {
-    _limit?: number
-}
-
-interface RequestParams {
-    params: RequestInitParams
-}
-
 interface Answer<T> extends State<T> {
-    refetch: (params: RequestParams) => void
+    refetch: (prop: AxiosRequestConfig) => void
 }
 
 type Action<T> =
@@ -23,7 +17,11 @@ type Action<T> =
   { type: 'fetched'; payload: T } |
   { type: 'error'; payload: Error }
 
-export function useFetch<T>(url: string, props: RequestInitParams = {}): Answer<T> {
+export function useFetch<T>(url: string, props: AxiosRequestConfig = {}): Answer<T> {
+    console.log('==============================######## useFetch ##########')
+    console.log(props)
+    if (!(url in props)) {props.url=url}
+    console.log(props)
     const [options, setOptions] = useState(props)
 
     const cancelRequest = useRef<boolean>(false)
@@ -47,45 +45,48 @@ export function useFetch<T>(url: string, props: RequestInitParams = {}): Answer<
         }
     }
 
-    const refetch = (prop: RequestParams): void => {
-        setOptions(prop.params)
+    const refetch = (prop: AxiosRequestConfig): void => {
+        console.log('----- refetch -------')
+        setOptions((prev)=>Object.assign(prev, prop))
+        console.log(options)
     }
 
     const [state, dispatch] = useReducer(fetchReducer, initState)
 
+    console.log('----- перед useEffect -------')
+    console.log(options)
+
+
     useEffect(() => {
         console.log('####### useEffect ########')
-        cancelRequest.current = false
+        cancelRequest.current = false;
 
-        const fetchData = async () => {
+        ( async function () {
             dispatch({ type: 'loading' })
 
             try {
-                console.log('------- fetch ------------')
-                console.log(options)
-                const response = await fetch(url, options)
-                if (!response.ok) {
-                    throw new Error(response.statusText)
-                }
-
-                const data = (await response.json()) as T
+                console.log('------- axios ------------')
+                const response = await axios(options)
+                const data = response.data as T
 
                 if (cancelRequest.current) return
 
                 dispatch({ type: 'fetched', payload: data })
             } catch (error) {
+                console.log('====== Error ============')
+                console.log(error)
                 if (cancelRequest.current) return
 
                 dispatch({ type: 'error', payload: error as Error })
             }
-        }
+        })()
 
-        fetchData()
+        // fetchData()
 
         return () => {
             cancelRequest.current = true
         }
-    }, [url, options])
+    }, [options, url])
 
     return { ...state, refetch }
 }
