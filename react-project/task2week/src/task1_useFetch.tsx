@@ -13,7 +13,7 @@ const URL_OPT = {
 console.log(JSON.stringify(URL_OPT))
 const URL_POSTS: string = 'https://jsonplaceholder.typicode.com/posts';
 
-function Demo() {
+function Demo1() {
     console.log('========= Demo ==========')
 
     const request = useFetch<Post[]>(URL_POSTS, URL_OPT);
@@ -38,4 +38,4 @@ function Demo() {
     )
 }
 
-export default Demo
+export default Demo1

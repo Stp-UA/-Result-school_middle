@@ -5,7 +5,7 @@ interface IOut<T> {
     ref: RefObject<T>
 }
 
-function useEventListener<
+function useListener<
   K extends keyof HTMLElementEventMap,
   T extends HTMLElement | void = void,
 >(
@@ -40,8 +40,8 @@ export function useHover<T extends HTMLElement = HTMLDivElement>(initialValue: n
     const handleMouseEnter = () => setHovered(true)
     const handleMouseLeave = () => setHovered(false)
 
-    useEventListener('mouseenter', handleMouseEnter, ref)
-    useEventListener('mouseleave', handleMouseLeave, ref)
+    useListener('mouseenter', handleMouseEnter, ref)
+    useListener('mouseleave', handleMouseLeave, ref)
 
     const out: IOut<T> = {
         hovered,
