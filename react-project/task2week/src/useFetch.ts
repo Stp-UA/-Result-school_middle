@@ -48,7 +48,7 @@ export function useFetch<T>(
   };
 
   const refetch = (prop: AxiosRequestConfig): void => {
-    setOptions((prev) => Object.assign({}, options, prop));
+    setOptions((prev) => ({ ...prev, ...prop }));
   };
 
   const [state, dispatch] = useReducer(fetchReducer, initState);
