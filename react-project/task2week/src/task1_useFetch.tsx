@@ -8,18 +8,10 @@ interface Post {
 }
 
 const URL_POSTS: string = 'https://jsonplaceholder.typicode.com/posts'
-// const URL_PROPS = {
-//     params: {
-//         _limit: 3
-//     }
-// }
 
 function Demo1() {
 
     const request = useFetch<Post[]>(URL_POSTS);
-    // const request = useFetch<Post[]>(URL_POSTS, URL_PROPS);
-    console.log('========= Demo ==========')
-    console.log(request)
 
     return (
         <div>
@@ -34,7 +26,7 @@ function Demo1() {
                 </button>
             </div>
             {request.isLoading && 'Загрузка...'}
-            {request.error && 'Произошла ошибка'}
+            {request.error && !request.isLoading && 'Произошла ошибка'}
             {request.data && !request.isLoading  && request.data.map(item => <div key={item.id}>{item.title}</div>)}
         </div>
     )
