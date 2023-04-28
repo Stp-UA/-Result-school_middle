@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./config.css" />
+    <title>Config</title>
+  </head>
+  <body>
+    <div class="full-container line-height-155">
+      <div class="result">
+        <label class="result-label" for="placeholder" id="result-label">
+          Full name
+          <span class="red"> * </span>
+        </label>
+        <div class="result-description size-2" id="result-description">
+          description
+        </div>
+        <input
+          class="text-input"
+          id="result-placeholder"
+          type="text"
+          placeholder="Your name"
+        />
+        <div class="result-error red" id="result-error">error</div>
+      </div>
+      <div class="params-container">
+        <div class="label">
+          <label for="placeholder-input" id="placeholder-label">
+            Placeholder
+          </label>
+          <input
+            class="text-input size-input"
+            id="placeholder-input"
+            type="text"
+            placeholder="Placeholder"
+            value="Your name"
+          />
+        </div>
+        <div class="margin-top1 label">
+          <label for="label-input" id="label-label"> Label </label>
+          <input
+            class="text-input size-input"
+            id="label-input"
+            type="text"
+            placeholder="Label"
+            value="Full name"
+          />
+        </div>
+        <div class="margin-top1 label">
+          <label for="description-input" id="description-label">
+            Description
+          </label>
+          <input
+            class="text-input size-input"
+            id="description-input"
+            type="text"
+            placeholder="Description"
+            value=""
+          />
+        </div>
+        <div class="margin-top1 label">
+          <label for="error-input" id="error-label"> Error </label>
+          <input
+            class="text-input size-input"
+            id="error-input"
+            type="text"
+            placeholder="Error"
+            value=""
+          />
+        </div>
+        <div class="margin-top1 label">
+          <label for="variant-input" id="variant-label"> Variant </label>
+          <div class="relative-div">
+            <select class="text-input size-input pointer" id="variant-input">
+              <option value="default" selected="">Default</option>
+              <option value="filled">Filled</option>
+              <option value="unstyled">Unstyled</option>
+            </select>
+            <div class="arrow">
+              <img src="../public/arrow.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="margin-top1 label">
+          <label for="variant-input" id="radius-label"> Radius </label>
+          <div class="relative-div">
+            <select class="text-input size-input pointer" id="radius-input">
+              <option value="0">0%</option>
+              <option value="1" selected="">25%</option>
+              <option value="2">50%</option>
+              <option value="3">75%</option>
+              <option value="4">100%</option>
+            </select>
+            <div class="arrow">
+              <img src="../public/arrow.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="margin-top1 label">
+          <label for="size-input" id="size-label"> Size </label>
+          <div class="relative-div">
+            <select class="text-input size-input pointer" id="size-input">
+              <option value="0">extra small</option>
+              <option value="1" selected="">small</option>
+              <option value="2">medium</option>
+              <option value="3">large</option>
+              <option value="4">extra large</option>
+            </select>
+            <div class="arrow">
+              <img src="../public/arrow.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="margin-top1 label">
+          <div class="required">
+            <input id="required-input" type="checkbox" value="false" checked />
+            <label for="required-input" class="required-label1">
+              <div class="required-div1"></div>
+              <div class="required-div2"></div>
+            </label>
+            <div class="required-div3">
+              <label class="required-label2" for="required-input">
+                Required
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
