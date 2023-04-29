@@ -21,3 +21,23 @@
 .size-6 {
   font-size: 1.25rem;
 }
+
+.border-1 {
+  border-radius: 0.125rem;
+}
+
+.border-2 {
+  border-radius: 0.25rem;
+}
+
+.border-3 {
+  border-radius: 0.5rem;
+}
+
+.border-4 {
+  border-radius: 1rem;
+}
+
+.border-5 {
+  border-radius: 2rem;
+}

@@ -24,6 +24,11 @@ select {
 }
 
 /* Настройки для панели редиктирования */
+input,
+select {
+  appearance: none;
+}
+
 .full-container {
   display: flex;
   align-items: center;
@@ -41,13 +46,6 @@ select {
   line-height: 1.55;
 }
 
-.result-label {
-  display: inline-block;
-  font-weight: 500;
-  color: #212529;
-  cursor: default;
-}
-
 .red {
   color: #fa5252;
 }
@@ -57,17 +55,12 @@ select {
 }
 
 .result-description {
-  display: block;
-  text-decoration: none;
-  word-break: break-word;
   color: rgb(134, 142, 150);
   line-height: 1.2;
 }
 
 .text-input {
   display: block;
-  text-align: left;
-  appearance: none;
   height: 2.25rem;
   width: 100%;
   color: #000;
@@ -75,31 +68,12 @@ select {
   transition: border-color 100ms ease;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  border-radius: 0.25rem;
-}
-
-.result-error {
-  display: block;
-  text-decoration: none;
-  word-break: break-word;
 }
 
 .params-container {
-  box-sizing: border-box;
   max-width: 16rem;
   padding: 1rem;
   border-left: 0.07rem solid #dddddd;
-}
-
-.label {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #212529;
-  cursor: default;
-}
-
-.size-input {
-  font-size: 1rem;
 }
 
 .margin-top1 {
@@ -127,6 +101,16 @@ select {
 }
 
 #required-input {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0;
+  clip-path: inset(50%);
+  position: absolute;
+}
+
+#disabled-input {
   height: 0;
   width: 0;
   overflow: hidden;
@@ -206,8 +190,17 @@ select {
   border-color: #228be6;
   transition: color 150ms ease;
 }
-
 #required-input:checked + .required-label1 .required-div1 {
+  left: calc(100% - 1rem);
+  border-color: #fff;
+}
+
+#disabled-input:checked + .required-label1 {
+  background-color: #228be6;
+  border-color: #228be6;
+  transition: color 150ms ease;
+}
+#disabled-input:checked + .required-label1 .required-div1 {
   left: calc(100% - 1rem);
   border-color: #fff;
 }

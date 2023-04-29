@@ -5,75 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./config.css" />
+    <link rel="stylesheet" href="./size.css" />
     <title>Config</title>
   </head>
   <body>
     <div class="full-container line-height-155">
-      <div class="result">
-        <label class="result-label" for="placeholder" id="result-label">
+      <div class="result size-4">
+        <label id="result-label" for="placeholder">
           Full name
           <span class="red"> * </span>
         </label>
-        <div class="result-description size-2" id="result-description">
+        <div class="result-description size-3" id="result-description-id">
           description
         </div>
         <input
-          class="text-input"
+          class="text-input size-4 border-2"
           id="result-placeholder"
           type="text"
           placeholder="Your name"
         />
-        <div class="result-error red" id="result-error">error</div>
+        <div class="red" id="result-error">error</div>
       </div>
       <div class="params-container">
-        <div class="label">
+        <div>
           <label for="placeholder-input" id="placeholder-label">
             Placeholder
           </label>
           <input
-            class="text-input size-input"
+            class="text-input"
             id="placeholder-input"
             type="text"
             placeholder="Placeholder"
             value="Your name"
           />
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
           <label for="label-input" id="label-label"> Label </label>
           <input
-            class="text-input size-input"
+            class="text-input"
             id="label-input"
             type="text"
             placeholder="Label"
             value="Full name"
           />
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
           <label for="description-input" id="description-label">
             Description
           </label>
           <input
-            class="text-input size-input"
+            class="text-input"
             id="description-input"
             type="text"
             placeholder="Description"
             value=""
           />
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
           <label for="error-input" id="error-label"> Error </label>
           <input
-            class="text-input size-input"
+            class="text-input"
             id="error-input"
             type="text"
             placeholder="Error"
             value=""
           />
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
           <label for="variant-input" id="variant-label"> Variant </label>
           <div class="relative-div">
-            <select class="text-input size-input pointer" id="variant-input">
+            <select class="text-input pointer" id="variant-input">
               <option value="default" selected="">Default</option>
               <option value="filled">Filled</option>
               <option value="unstyled">Unstyled</option>
@@ -83,10 +84,10 @@
             </div>
           </div>
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
           <label for="variant-input" id="radius-label"> Radius </label>
           <div class="relative-div">
-            <select class="text-input size-input pointer" id="radius-input">
+            <select class="text-input pointer" id="radius-input">
               <option value="0">0%</option>
               <option value="1" selected="">25%</option>
               <option value="2">50%</option>
@@ -98,10 +99,10 @@
             </div>
           </div>
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
           <label for="size-input" id="size-label"> Size </label>
           <div class="relative-div">
-            <select class="text-input size-input pointer" id="size-input">
+            <select class="text-input pointer" id="size-input">
               <option value="0">extra small</option>
               <option value="1" selected="">small</option>
               <option value="2">medium</option>
@@ -113,7 +114,21 @@
             </div>
           </div>
         </div>
-        <div class="margin-top1 label">
+        <div class="margin-top1">
+          <div class="required">
+            <input id="disabled-input" type="checkbox" value="false" />
+            <label for="disabled-input" class="required-label1">
+              <div class="required-div1"></div>
+              <div class="required-div2"></div>
+            </label>
+            <div class="required-div3">
+              <label class="required-label2" for="disabled-input">
+                Disabled
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="margin-top1">
           <div class="required">
             <input id="required-input" type="checkbox" value="false" checked />
             <label for="required-input" class="required-label1">
