@@ -29,21 +29,18 @@ select {
   appearance: none;
 }
 
-.full-container {
+#full-container {
   display: flex;
   align-items: center;
   width: 60rem;
   border: 0.07rem solid #dddddd;
   border-radius: 0.25rem;
+  line-height: 1.55;
 }
 
 .result {
   width: 48rem;
   padding: 1rem;
-}
-
-.line-height-155 {
-  line-height: 1.55;
 }
 
 .red {
@@ -70,13 +67,13 @@ select {
   padding-right: 0.75rem;
 }
 
-.params-container {
+#params-container {
   max-width: 16rem;
   padding: 1rem;
   border-left: 0.07rem solid #dddddd;
 }
 
-.margin-top1 {
+.margin-top {
   margin-top: 1rem;
 }
 
