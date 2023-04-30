@@ -28,7 +28,11 @@
       </div>
       <div id="params-container">
         <div>
-          <label for="placeholder-input" id="placeholder-label">
+          <label
+            class="font-bold"
+            for="placeholder-input"
+            id="placeholder-label"
+          >
             Placeholder
           </label>
           <input
@@ -40,7 +44,9 @@
           />
         </div>
         <div class="margin-top">
-          <label for="label-input" id="label-label"> Label </label>
+          <label class="font-bold" for="label-input" id="label-label">
+            Label
+          </label>
           <input
             class="text-input"
             id="label-input"
@@ -50,7 +56,11 @@
           />
         </div>
         <div class="margin-top">
-          <label for="description-input" id="description-label">
+          <label
+            class="font-bold"
+            for="description-input"
+            id="description-label"
+          >
             Description
           </label>
           <input
@@ -62,7 +72,9 @@
           />
         </div>
         <div class="margin-top">
-          <label for="error-input" id="error-label"> Error </label>
+          <label class="font-bold" for="error-input" id="error-label">
+            Error
+          </label>
           <input
             class="text-input"
             id="error-input"
@@ -72,7 +84,9 @@
           />
         </div>
         <div class="margin-top">
-          <label for="variant-input" id="variant-label"> Variant </label>
+          <label class="font-bold" for="variant-input" id="variant-label">
+            Variant
+          </label>
           <div class="relative-div">
             <select class="text-input pointer" id="variant-input">
               <option value="default" selected="">Default</option>
@@ -80,12 +94,14 @@
               <option value="unstyled">Unstyled</option>
             </select>
             <div class="arrow">
-              <img src="../public/arrow.svg" alt="" />
+              <img class="img-arrow" src="../public/arrow.svg" alt="" />
             </div>
           </div>
         </div>
         <div class="margin-top">
-          <label for="variant-input" id="radius-label"> Radius </label>
+          <label class="font-bold" for="variant-input" id="radius-label">
+            Radius
+          </label>
           <div class="relative-div">
             <select class="text-input pointer" id="radius-input">
               <option value="0">0%</option>
@@ -95,12 +111,14 @@
               <option value="4">100%</option>
             </select>
             <div class="arrow">
-              <img src="../public/arrow.svg" alt="" />
+              <img class="img-arrow" src="../public/arrow.svg" alt="" />
             </div>
           </div>
         </div>
         <div class="margin-top">
-          <label for="size-input" id="size-label"> Size </label>
+          <label class="font-bold" for="size-input" id="size-label">
+            Size
+          </label>
           <div class="relative-div">
             <select class="text-input pointer" id="size-input">
               <option value="0">extra small</option>
@@ -110,33 +128,33 @@
               <option value="4">extra large</option>
             </select>
             <div class="arrow">
-              <img src="../public/arrow.svg" alt="" />
+              <img class="img-arrow" src="../public/arrow.svg" alt="" />
             </div>
           </div>
         </div>
         <div class="margin-top">
-          <div class="required">
+          <div class="flex">
             <input id="disabled-input" type="checkbox" value="false" />
-            <label for="disabled-input" class="required-label1">
-              <div class="required-div1"></div>
-              <div class="required-div2"></div>
+            <label for="disabled-input" class="toggle-label1">
+              <div class="toggle-div1"></div>
+              <div class="toggle-div2"></div>
             </label>
-            <div class="required-div3">
-              <label class="required-label2" for="disabled-input">
+            <div>
+              <label class="toggle-label2" for="disabled-input">
                 Disabled
               </label>
             </div>
           </div>
         </div>
         <div class="margin-top">
-          <div class="required">
+          <div class="flex">
             <input id="required-input" type="checkbox" value="false" checked />
-            <label for="required-input" class="required-label1">
-              <div class="required-div1"></div>
-              <div class="required-div2"></div>
+            <label for="required-input" class="toggle-label1">
+              <div class="toggle-div1"></div>
+              <div class="toggle-div2"></div>
             </label>
-            <div class="required-div3">
-              <label class="required-label2" for="required-input">
+            <div>
+              <label class="toggle-label2" for="required-input">
                 Required
               </label>
             </div>
