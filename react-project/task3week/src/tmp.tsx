@@ -1,9 +1,7 @@
-import { useForm } from "react-hook-form";
-
 import React, { useRef, useState } from "react";
 import "./App.css";
 
-function App() {
+function Tmp() {
   console.log("#### render #####");
 
   const clear = {
@@ -60,4 +58,4 @@ function App() {
   );
 }
 
-export default App;
+export default tmp;
