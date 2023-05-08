@@ -1,91 +1,82 @@
-import { useEffect, useReducer, useRef, useState } from 'react'
+import { useEffect, useReducer, useRef, useState } from "react";
+import axios from "axios";
+import { AxiosRequestConfig } from "axios";
 
 interface State<T> {
-    data: T | undefined,
-    isLoading: boolean,
-    error: Error | undefined
-}
-
-interface RequestInitParams extends RequestInit {
-    _limit?: number
-}
-
-interface RequestParams {
-    params: RequestInitParams
+  data: T | undefined;
+  isLoading: boolean;
+  error: Error | undefined;
 }
 
 interface Answer<T> extends State<T> {
-    refetch: (params: RequestParams) => void
+  refetch: (prop: AxiosRequestConfig) => void;
 }
 
 type Action<T> =
-  { type: 'loading' } |
-  { type: 'fetched'; payload: T } |
-  { type: 'error'; payload: Error }
+  | { type: "loading" }
+  | { type: "fetched"; payload: T }
+  | { type: "error"; payload: Error };
 
-export function useFetch<T>(url: string, props: RequestInitParams = {}): Answer<T> {
-    const [options, setOptions] = useState(props)
+export function useFetch<T>(
+  url: string,
+  props: AxiosRequestConfig = {}
+): Answer<T> {
+  if (!(url in props)) {
+    props.url = url;
+  }
+  const [options, setOptions] = useState(props);
 
-    const cancelRequest = useRef<boolean>(false)
+  const cancelRequest = useRef<boolean>(false);
 
-    const initState: State<T> = {
-        data: undefined,
-        isLoading: false,
-        error: undefined,
+  const initState: State<T> = {
+    data: undefined,
+    isLoading: true,
+    error: undefined,
+  };
+
+  const fetchReducer = (state: State<T>, action: Action<T>): State<T> => {
+    switch (action.type) {
+      case "loading":
+        return { ...initState, isLoading: true };
+      case "fetched":
+        return { ...initState, data: action.payload, isLoading: false };
+      case "error":
+        return { ...initState, error: action.payload, isLoading: false };
+      default:
+        return state;
     }
+  };
 
-    const fetchReducer = (state: State<T>, action: Action<T>): State<T> => {
-        switch (action.type) {
-            case 'loading':
-                return { ...initState, isLoading: true }
-            case 'fetched':
-                return { ...initState, data: action.payload, isLoading: false }
-            case 'error':
-                return { ...initState, error: action.payload, isLoading: false }
-            default:
-                return state
-        }
-    }
+  const refetch = (prop: AxiosRequestConfig): void => {
+    setOptions((prev) => ({ ...prev, ...prop }));
+  };
 
-    const refetch = (prop: RequestParams): void => {
-        setOptions(prop.params)
-    }
+  const [state, dispatch] = useReducer(fetchReducer, initState);
 
-    const [state, dispatch] = useReducer(fetchReducer, initState)
+  useEffect(() => {
+    cancelRequest.current = false;
 
-    useEffect(() => {
-        console.log('####### useEffect ########')
-        cancelRequest.current = false
+    (async function () {
+      dispatch({ type: "loading" });
 
-        const fetchData = async () => {
-            dispatch({ type: 'loading' })
+      try {
+        const response = await axios(options);
+        const data = response.data as T;
 
-            try {
-                console.log('------- fetch ------------')
-                console.log(options)
-                const response = await fetch(url, options)
-                if (!response.ok) {
-                    throw new Error(response.statusText)
-                }
+        if (cancelRequest.current) return;
 
-                const data = (await response.json()) as T
+        dispatch({ type: "fetched", payload: data });
+      } catch (error) {
+        if (cancelRequest.current) return;
 
-                if (cancelRequest.current) return
+        dispatch({ type: "error", payload: error as Error });
+      }
+    })();
 
-                dispatch({ type: 'fetched', payload: data })
-            } catch (error) {
-                if (cancelRequest.current) return
+    return () => {
+      cancelRequest.current = true;
+    };
+  }, [options]);
 
-                dispatch({ type: 'error', payload: error as Error })
-            }
-        }
-
-        fetchData()
-
-        return () => {
-            cancelRequest.current = true
-        }
-    }, [url, options])
-
-    return { ...state, refetch }
+  return { ...state, refetch };
 }

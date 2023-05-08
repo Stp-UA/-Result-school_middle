@@ -6,6 +6,7 @@ import Demo3 from './task3_useHover'
 import Demo4 from './task4_useViewportSize';
 import Demo5 from './task5_useWindowScroll';
 import Demo6 from './task6_useToggleArray';
+import Demo7 from './task7_useToggle';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <Demo4 />
       <Demo5 />
       <Demo6 />
-    </div>
+      <Demo7 />
+</div>
   );
 }
 

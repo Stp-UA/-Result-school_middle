@@ -9,7 +9,6 @@ export function useToggleArray(stringArray: string[]): [string, (value?: string)
         } else {
             key === stringArray.length-1 ? setKey(0) : setKey(key + 1)
         }
-
     }
 
     return [stringArray[key], switchToggle]

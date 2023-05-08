@@ -7,17 +7,11 @@ interface Post {
     body: string
 }
 
-const URL_OPT = {
-    _limit: 3
-}
-console.log(JSON.stringify(URL_OPT))
-const URL_POSTS: string = 'https://jsonplaceholder.typicode.com/posts';
+const URL_POSTS: string = 'https://jsonplaceholder.typicode.com/posts'
 
 function Demo1() {
-    console.log('========= Demo ==========')
 
-    const request = useFetch<Post[]>(URL_POSTS, URL_OPT);
-    console.log(request)
+    const request = useFetch<Post[]>(URL_POSTS);
 
     return (
         <div>
@@ -32,7 +26,7 @@ function Demo1() {
                 </button>
             </div>
             {request.isLoading && 'Загрузка...'}
-            {request.error && 'Произошла ошибка'}
+            {request.error && !request.isLoading && 'Произошла ошибка'}
             {request.data && !request.isLoading  && request.data.map(item => <div key={item.id}>{item.title}</div>)}
         </div>
     )
