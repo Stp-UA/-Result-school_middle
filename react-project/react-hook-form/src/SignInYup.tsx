@@ -1,25 +1,34 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { validateSignIn } from "./validation";
+import { object, string } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import "./sign.css";
 
-export type InputTypesSignIn = {
+// Для использования Yup необходимо подключить Yup и @hookform/resolvers
+//  пример использования смотри ниже
+
+type InputTypesSignIn = {
   email: string;
   password: string;
 };
 
-function SignIn() {
+const validationSchema = object({
+  email: string()
+    .required("поле должно быть заполнено")
+    .email("некорректный email"),
+  password: string()
+    .required("поле должно быть заполнено")
+    .min(6, "минимальная длина 6 символов")
+    .max(12, "макимальная длина 12 символов"),
+});
+
+function SignInYup() {
   const { register, handleSubmit, formState } = useForm<InputTypesSignIn>({
     mode: "onBlur",
     defaultValues: {
       email: "",
       password: "",
     },
-    resolver: (values) => {
-      return {
-        values: values,
-        errors: validateSignIn(values),
-      };
-    },
+    resolver: yupResolver(validationSchema),
   });
 
   const onSubmit: SubmitHandler<InputTypesSignIn> = (data) => {
@@ -62,4 +71,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignInYup;

@@ -41,8 +41,10 @@
     ]
   },
   "devDependencies": {
+    "@hookform/resolvers": "^3.1.0",
     "@types/validator": "^13.7.15",
     "react-hook-form": "^7.43.9",
-    "validator": "^13.9.0"
+    "validator": "^13.9.0",
+    "yup": "^1.1.1"
   }
 }
