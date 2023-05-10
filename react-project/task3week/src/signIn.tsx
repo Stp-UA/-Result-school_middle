@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { validateSignIn } from "./validation";
-import "./sign.css";
+import "./css/sign.css";
 
 export type InputTypesSignIn = {
   email: string;

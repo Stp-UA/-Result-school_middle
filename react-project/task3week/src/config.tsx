@@ -1,4 +1,6 @@
-function config() {
+import "./css/config.css";
+
+function Config() {
   return (
     <div id="full-container">
       <div id="result" className="size-4">
@@ -172,4 +174,4 @@ function config() {
   );
 }
 
-export default config;
+export default Config;
