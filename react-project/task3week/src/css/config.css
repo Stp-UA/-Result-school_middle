@@ -39,13 +39,14 @@
 
 /* используется для всех инпутов и селектов */
 .text-input {
+  font-weight: normal;
   height: 2rem;
   width: 100%;
   color: #000;
   border: 0.07rem solid #dddddd;
   transition: border-color 100ms ease;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 .text-input:focus-within {
@@ -54,10 +55,6 @@
 
 .margin-top {
   margin-top: 0.5rem;
-}
-
-.font-bold {
-  font-weight: bold;
 }
 
 /* стрелочки в селектах */

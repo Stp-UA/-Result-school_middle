@@ -1,11 +1,11 @@
 import { InputTypesSignIn } from "./signIn";
+// import { PropsTypes } from "./config";
 import isEmail from "validator/lib/isEmail";
 
 const MIN_LENGTH = 6;
 const MAX_LENGTH = 12;
 
 const validateEmail = (email: string) => {
-  console.log("####### validateEmail = ", email);
   if (!email) {
     return {
       type: "required",
@@ -61,3 +61,6 @@ export function validateSignIn(values: InputTypesSignIn) {
     return {};
   }
 }
+
+// export function validateConfig(values: PropsTypes) {
+// }

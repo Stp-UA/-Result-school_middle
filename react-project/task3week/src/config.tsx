@@ -1,6 +1,39 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+// import { validateConfig } from "./validation";
 import "./css/config.css";
 
+export type PropsTypes = {
+  placeholder: string;
+  label: string;
+  description: string;
+  error: string;
+  variant: "default" | "filled" | "unstyled";
+  radius: "1" | "2" | "3" | "4" | "5";
+  size: "1" | "2" | "3" | "4" | "5";
+  disabled: Boolean;
+  required: Boolean;
+};
+
 function Config() {
+  const { register, handleSubmit } = useForm<PropsTypes>({
+    mode: "onBlur",
+    defaultValues: {
+      placeholder: "Your name",
+      label: "Full name",
+      description: "description",
+      error: "error",
+      variant: "default",
+      radius: "3",
+      size: "1",
+      disabled: false,
+      required: true,
+    },
+  });
+
+  const onSubmit: SubmitHandler<PropsTypes> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div id="full-container">
       <div id="result" className="size-4">
@@ -21,73 +54,45 @@ function Config() {
           error
         </div>
       </div>
-      <div id="params-container">
+      <form id="params-container" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label
-            className="font-bold"
-            htmlFor="placeholder-input"
-            id="placeholder-label"
-          >
-            Placeholder
+          <label>
+            <b>Placeholder</b>
+            <input
+              {...register("placeholder")}
+              className="text-input"
+              type="text"
+            />
           </label>
-          <input
-            className="text-input"
-            id="placeholder-input"
-            type="text"
-            placeholder="Placeholder"
-            value="Your name"
-          />
         </div>
         <div className="margin-top">
-          <label className="font-bold" htmlFor="label-input" id="label-label">
-            Label
+          <label>
+            <b>Label</b>
+            <input {...register("label")} className="text-input" type="text" />
           </label>
-          <input
-            className="text-input"
-            id="label-input"
-            type="text"
-            placeholder="Label"
-            value="Full name"
-          />
         </div>
         <div className="margin-top">
-          <label
-            className="font-bold"
-            htmlFor="description-input"
-            id="description-label"
-          >
-            Description
+          <label>
+            <b>Description</b>
+            <input
+              {...register("description")}
+              className="text-input"
+              type="text"
+            />
           </label>
-          <input
-            className="text-input"
-            id="description-input"
-            type="text"
-            placeholder="Description"
-            value=""
-          />
         </div>
         <div className="margin-top">
-          <label className="font-bold" htmlFor="error-input" id="error-label">
-            Error
+          <label>
+            <b>Error</b>
+            <input {...register("error")} className="text-input" type="text" />
           </label>
-          <input
-            className="text-input"
-            id="error-input"
-            type="text"
-            placeholder="Error"
-            value=""
-          />
         </div>
         <div className="margin-top">
-          <label
-            className="font-bold"
-            htmlFor="variant-input"
-            id="variant-label"
-          >
-            Variant
+          <label htmlFor="variant-input">
+            <b>Variant</b>
           </label>
           <div className="relative-div">
-            <select className="text-input pointer" id="variant-input">
+            <select {...register("variant")} className="text-input pointer">
               <option value="default" selected>
                 Default
               </option>
@@ -100,19 +105,13 @@ function Config() {
           </div>
         </div>
         <div className="margin-top">
-          <label
-            className="font-bold"
-            htmlFor="variant-input"
-            id="radius-label"
-          >
-            Radius
+          <label {...register("radius")} htmlFor="radius-input">
+            <b>Radius</b>
           </label>
           <div className="relative-div">
             <select className="text-input pointer" id="radius-input">
               <option value="0">0%</option>
-              <option value="1" selected>
-                25%
-              </option>
+              <option value="1">25%</option>
               <option value="2">50%</option>
               <option value="3">75%</option>
               <option value="4">100%</option>
@@ -123,8 +122,8 @@ function Config() {
           </div>
         </div>
         <div className="margin-top">
-          <label className="font-bold" htmlFor="size-input" id="size-label">
-            Size
+          <label {...register("size")} htmlFor="size-input">
+            <b>Size</b>
           </label>
           <div className="relative-div">
             <select className="text-input pointer" id="size-input">
@@ -143,7 +142,11 @@ function Config() {
         </div>
         <div className="margin-top">
           <div className="flex">
-            <input id="disabled-input" type="checkbox" value="false" />
+            <input
+              {...register("disabled")}
+              id="disabled-input"
+              type="checkbox"
+            />
             <label htmlFor="disabled-input" className="toggle-label1">
               <div className="toggle-div1"></div>
               <div className="toggle-div2"></div>
@@ -157,7 +160,12 @@ function Config() {
         </div>
         <div className="margin-top">
           <div className="flex">
-            <input id="required-input" type="checkbox" value="false" checked />
+            <input
+              {...register("required")}
+              id="required-input"
+              type="checkbox"
+              checked
+            />
             <label htmlFor="required-input" className="toggle-label1">
               <div className="toggle-div1"></div>
               <div className="toggle-div2"></div>
@@ -169,7 +177,10 @@ function Config() {
             </div>
           </div>
         </div>
-      </div>
+        <button className="margin-top" type="submit">
+          Принять изменения
+        </button>
+      </form>
     </div>
   );
 }
